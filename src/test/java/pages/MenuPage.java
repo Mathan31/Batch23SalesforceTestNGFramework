@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.interactions.Actions;
 
 import base.BaseClass;
 
@@ -12,29 +13,30 @@ public class MenuPage extends BaseClass{
 	protected By logoutLink = By.xpath("//a[text()='Log Out']");
 	protected By userImg=By.xpath("(//span[@class='uiImage']/parent::div[@data-aura-class='forceEntityIcon'])[1]");
 
-//
-//	public MenuPage clickOnAppLauncher() {
-//		oWrap.click(driver.findElement(applauncherIcon), "App Launcher");
-//		try {
-//			Thread.sleep(3000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		return this;
-//	}
-//	
-//
-//	public SalesPage clickOnSales() {
-//		oWrap.moveToElement(driver.findElement(salesLink), "Sales Link");
-//		oWrap.click(driver.findElement(salesLink), "Sales Link");
-//		return new SalesPage(driver,node); 
-//	}
-//	
-//	public MenuPage clickOnViewAll() {
-//		oWrap.click(driver.findElement(viewAllLink), "viewAll Link");
-//		return this;
-//	}
+
+	public MenuPage clickOnAppLauncher() {
+		driver.findElement(applauncherIcon).click();
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return this;
+	}
+	
+
+	public SalesPage clickOnSales() {
+		Actions actions = new Actions(driver);
+		actions.moveToElement(driver.findElement(salesLink)).perform();
+		driver.findElement(salesLink).click();
+		return new SalesPage(); 
+	}
+	
+	public MenuPage clickOnViewAll() {
+		driver.findElement(viewAllLink).click();
+		return this;
+	}
 	
 	public MenuPage clickUserImg()   {
 		try {

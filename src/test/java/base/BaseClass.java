@@ -1,5 +1,7 @@
 package base;
 
+import java.time.Duration;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -12,7 +14,7 @@ public class BaseClass {
 
 	public static WebDriver driver;
 	public int iBrowserType = 8; // 1 - Chrome, 2 - Edge, 3 - FF, 4 - IE
-	
+	public String sURL = "https://login.salesforce.com/";
 	@BeforeClass
 	public  void invokeBrowser() {
 		switch (iBrowserType) {
@@ -37,6 +39,10 @@ public class BaseClass {
 			driver = new ChromeDriver();
 			break;
 		}
+		driver.manage().window().maximize();
+		driver.navigate().to(sURL);
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 	}
 
 	@AfterClass
