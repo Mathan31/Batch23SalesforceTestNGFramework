@@ -11,11 +11,12 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 
+import libraries.HTMLReport;
 import util.PropertyFileUtil;
 
-public class BaseClass {
+public class BaseClass extends HTMLReport{
 
-	public static WebDriver driver;
+	public WebDriver driver; //1234
 	public static String fileName = "Environment";
 	public String excelFileName = "";
 	public int iBrowserType = Integer.parseInt(PropertyFileUtil.readDataFromPropertyFile(fileName, "Browser")); // 1 - Chrome, 2 - Edge, 3 - FF, 4 - IE
@@ -59,6 +60,12 @@ public class BaseClass {
 	public Object[][] excelData() throws Exception {
 		Object[][] values = util.DataProviderObject.getValue(excelFileName);
 		return values;
+	}
+
+	@Override
+	public String takeScreenshot() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }
